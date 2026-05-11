@@ -2,20 +2,24 @@ import categoryService from "../services/category.service.js";
 
 const getAllCategory = async (req, res) => {
     const categories = await categoryService.getAllCategory();
+    if (!categories || categories.length == 0) {
+        res.status(400).json({ message: "No Category Available." });
+    }
     res.json(categories);
 };
 
 const getCategoryById = async (req, res) => {
     const category = await categoryService.getCategoryById(req.params.id);
+    if (!category) {
+        res.status(404).json({ message: "No such category found." });
+    }
     res.json(category)
 };
 
 const createCategory = async (req, res) => {
     try {
         const category = await categoryService.createCategory(req.body);
-        console.log("Hello")
-        console.log(category)
-        res.json(category);
+        res.status(201).json(category);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -35,8 +39,11 @@ const updateCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
     const id = req.params.id
     try {
-        await categoryService.deleteCategory(id);
-        res.json({ message: "Category deleted successfully." })
+        const deletedCategory = await categoryService.deleteCategory(id);
+        if (!deletedCategory) {
+            res.status(404).json({ message: "No such Category found." })
+        }
+        res.json({ message: `${deletedCategory.name} deleted successfully.` })
     } catch (error) {
         res.status(400).send(error.message);
     }
