@@ -28,7 +28,7 @@ const ProductSchema = new mongoose.Schema({
         max: [1000, "Stock must be less than 1000."]
     },
     status: {
-        tupe: String,
+        type: String,
         default: "Active",
         enum: ["Active", "InActive"]
     }
