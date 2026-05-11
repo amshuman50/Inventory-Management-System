@@ -15,7 +15,7 @@ const createProduct = async (data) => {
 };
 
 const updateProduct = async (id, input) => {
-    return await Product.findByIdAndUpdate(id, input);
+    return await Product.findByIdAndUpdate(id, input, { new: true });
 };
 
 const deleteProduct = async (id) => {
