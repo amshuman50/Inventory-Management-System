@@ -10,11 +10,6 @@ const getUserById = async (id) => {
     return user;
 };
 
-const createUser = async (data) => {
-    const user = await UserSchema.create(data);
-    return user;
-};
-
 const updateUser = async (id, input) => {
     const user = await UserSchema.findByIdAndUpdate(id, input);
 };
@@ -23,4 +18,4 @@ const deleteUser = async (id) => {
     const user = await UserSchema.findByIdAndDelete(id);
 };
 
-export default { getAllUsers, getUserById, createUser, updateUser, deleteUser }
+export default { getAllUsers, getUserById, updateUser, deleteUser }

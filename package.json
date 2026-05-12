@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Inventory Management System for managing products.",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/amshuman50/Inventory-Management-System#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.6.2"
   },
   "devDependencies": {

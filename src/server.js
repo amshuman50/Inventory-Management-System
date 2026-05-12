@@ -4,6 +4,7 @@ import connectDB from "./config/database.js";
 import productRoute from "./routes/product.route.js"
 import categoryRoute from "./routes/category.route.js"
 import userRoute from "./routes/user.route.js"
+import authRoute from "./routes/auth.route.js"
 
 const app = express();
 connectDB();
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/user", userRoute);
+app.use("/api/auth", authRoute);
 
 app.listen(port, () => {
     console.log(`App Listening in port ${port}`);
