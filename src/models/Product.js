@@ -9,8 +9,9 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: [true, "sku is required."]
     },
-    category: {
-        type: String,
+    categoryId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
         required: [true, "Product category is required."]
     },
     supplier: {

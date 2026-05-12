@@ -1,3 +1,4 @@
+import categoryService from "../services/category.service.js";
 import productService from "../services/product.service.js";
 
 const getAllProducts = async (req, res) => {
@@ -18,6 +19,10 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
+        const category = await categoryService.getCategoryById(req.body.categoryId);
+        if (!category) {
+            res.status(404).json({ message: "Category does not exists." });
+        }
         const product = await productService.createProduct(req.body);
         res.status(201).json(product);
     } catch (error) {
