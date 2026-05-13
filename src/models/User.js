@@ -61,3 +61,5 @@ const UserSchema = new mongoose.Schema({
 })
 
 export default mongoose.model("UserSchema", UserSchema);
+
+//Resolve in Merge Conflict
