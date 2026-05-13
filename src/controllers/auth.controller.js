@@ -16,7 +16,7 @@ const login = async (req, res) => {
         }
         if (!input.password) {
             throw {
-                message: "Password is required."
+                message: "Password is strictly required."
             }
         }
         const user = await authService.login(input);
