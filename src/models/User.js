@@ -51,7 +51,7 @@ const UserSchema = new mongoose.Schema({
         default: Date.now()
     },
     profileImageUrl: String,
-    role: {
+    roles: {
         type: [String],
         enum: ["SUPER_ADMIN", "ADMIN", "CUSTOMER", "SUPPLIER"],
         default: ["CUSTOMER"]
@@ -61,5 +61,3 @@ const UserSchema = new mongoose.Schema({
 })
 
 export default mongoose.model("UserSchema", UserSchema);
-
-//Resolve in Merge Conflict

@@ -1,12 +1,15 @@
 import express from "express";
 import productController from "../controllers/product.controller.js";
+import auth from "../middlewares/auth.js";
+import roleBasedAuth from "../middlewares/roleBasedAuth.js";
+import { ROLE_ADMIN, ROLE_PURCHASE_MANAGER, ROLE_SALES_MANAGER } from "../constants/roles.js";
 
 const router = express.Router();
 
 router.get("/", productController.getAllProducts);
 router.get("/:id", productController.getProductById);
-router.post("/", productController.createProduct);
-router.put("/:id", productController.updateProduct);
-router.delete('/:id', productController.deleteProduct);
+router.post("/", roleBasedAuth(ROLE_ADMIN), productController.createProduct);
+router.put("/:id", roleBasedAuth(ROLE_ADMIN), productController.updateProduct);
+router.delete('/:id', roleBasedAuth(ROLE_ADMIN), productController.deleteProduct);
 
 export default router;

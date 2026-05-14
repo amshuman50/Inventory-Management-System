@@ -1,0 +1,3 @@
+export const ROLE_ADMIN = "ADMIN";
+export const ROLE_PURCHASE_MANAGER = "PURCHASE_MANAGER";
+export const ROLE_SALES_MANAGER = "SALES_MANAGER";
