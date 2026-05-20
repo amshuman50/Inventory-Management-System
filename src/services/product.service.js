@@ -1,7 +1,8 @@
 import Product from "../models/Product.js";
 
 const getAllProducts = async () => {
-    const products = await Product.find();
+    const products = await Product.find()
+    .populate("category","name");
     return products;
 };
 
