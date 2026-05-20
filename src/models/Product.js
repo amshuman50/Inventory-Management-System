@@ -15,7 +15,8 @@ const ProductSchema = new mongoose.Schema({
         required: [true, "Product category is required."]
     },
     supplier: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Supplier",
         required: [true, "Supplier of the product is required."]
     },
     price: {
