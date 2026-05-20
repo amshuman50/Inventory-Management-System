@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get("/", productController.getAllProducts);
 router.get("/:id", productController.getProductById);
-router.post("/", roleBasedAuth(ROLE_ADMIN), productController.createProduct);
-router.put("/:id", roleBasedAuth(ROLE_ADMIN), productController.updateProduct);
-router.delete('/:id', roleBasedAuth(ROLE_ADMIN), productController.deleteProduct);
+router.post("/", roleBasedAuth(ROLE_ADMIN, ROLE_PURCHASE_MANAGER), productController.createProduct);
+router.put("/:id", roleBasedAuth(ROLE_ADMIN, ROLE_PURCHASE_MANAGER), productController.updateProduct);
+router.delete('/:id', roleBasedAuth(ROLE_ADMIN, ROLE_PURCHASE_MANAGER), productController.deleteProduct);
 
 export default router;
