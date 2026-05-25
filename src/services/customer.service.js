@@ -15,12 +15,12 @@ const createCustomer = async (data) => {
     return customer;
 };
 
-const updateCustomer = (id, input) => {
+const updateCustomer = async (id, input) => {
     const customer = await Customer.findByIdAndUpdate(id, input);
     return customer;
 };
 
-const deleteCustomer = (id) => {
+const deleteCustomer = async (id) => {
     const customer = await Customer.findByIdAndDelete(id);
     return customer;
 };
