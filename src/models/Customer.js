@@ -11,15 +11,18 @@ const customerSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        unique:true,
         required: [true, "Customer email is required."]
     },
     phone: {
         type: Number,
+        unique:true,
         required: [true, "Customer Phone number is required."]
     },
     type: {
         type: String,
-        default: "First Time"
+        default: "First Time",
+        enum: ["First Time", "Return", "VIP"]
     },
     status: {
         type: String,

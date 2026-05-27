@@ -15,6 +15,11 @@ const createCustomer = async (data) => {
     return customer;
 };
 
+const findCustomer = async (data) => {
+    const customer = await Customer.findOne({ $or: [{ email: data?.email }, { phone: data?.phone }], });
+    return customer;
+};
+
 const updateCustomer = async (id, input) => {
     const customer = await Customer.findByIdAndUpdate(id, input);
     return customer;
@@ -25,6 +30,6 @@ const deleteCustomer = async (id) => {
     return customer;
 };
 
-export default { getAllCustomers, getCustomerById, createCustomer, updateCustomer, deleteCustomer };
+export default { getAllCustomers, getCustomerById, createCustomer, updateCustomer, deleteCustomer, findCustomer };
 
 

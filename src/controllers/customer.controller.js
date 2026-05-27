@@ -11,9 +11,15 @@ const getCustomerById = async (req, res) => {
 };
 
 const createCustomer = async (req, res) => {
+    const data = req.body;
     try {
-        const customer = await customerService.createCustomer(req.body);
-        res.status(201).json({ message: "Customer created successfully." })
+        const existingCustomer = await customerService.findCustomer(data);
+        if (!existingCustomer) {
+            const customer = await customerService.createCustomer(data);
+            res.status(201).json({ message: "Customer created successfully." });
+        } else {
+            res.json({ message: "Welcome Back!" })
+        }
     } catch (error) {
         res.status(400).send(error.message);
     };
