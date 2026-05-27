@@ -18,6 +18,8 @@ const createCustomer = async (req, res) => {
             const customer = await customerService.createCustomer(data);
             res.status(201).json({ message: "Customer created successfully." });
         } else {
+            existingCustomer.type = "Return";
+            await existingCustomer.save();
             res.json({ message: "Welcome Back!" })
         }
     } catch (error) {
