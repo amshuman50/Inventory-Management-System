@@ -21,7 +21,7 @@ const findCustomer = async (data) => {
 };
 
 const updateCustomer = async (id, input) => {
-    const customer = await Customer.findByIdAndUpdate(id, input);
+    const customer = await Customer.findByIdAndUpdate(id, input, { new: true });
     return customer;
 };
 

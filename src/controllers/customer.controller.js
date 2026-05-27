@@ -18,8 +18,10 @@ const createCustomer = async (req, res) => {
             const customer = await customerService.createCustomer(data);
             res.status(201).json({ message: "Customer created successfully." });
         } else {
-            existingCustomer.type = "Return";
-            await existingCustomer.save();
+            if (existingCustomer.type === "First Time") {
+                existingCustomer.type = "Return";
+                await existingCustomer.save();
+            }
             res.json({ message: "Welcome Back!" })
         }
     } catch (error) {
@@ -31,8 +33,13 @@ const updateCustomer = async (req, res) => {
     const id = req.params.id;
     const input = req.body;
     try {
-        const customer = await customerService.updateCustomer(id, input);
-        res.json(customer);
+        const existingEmailPhone = await customerService.findCustomer(input);
+        if (!existingEmailPhone) {
+            const customer = await customerService.updateCustomer(id, input);
+            res.json(customer);
+        }else{
+            res.status(409).json({message:"Email or Phone Already Exists."});
+        }
     } catch (error) {
         res.status(400).send(error.message);
     };
