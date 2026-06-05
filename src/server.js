@@ -9,6 +9,7 @@ import cors from "cors"
 import auth from "./middlewares/auth.js";
 import supplierRoute from "./routes/supplier.route.js"
 import customerRoute from "./routes/customer.route.js";
+import purchaseRoute from "./routes/purchase.route.js";
 
 const app = express();
 connectDB();
@@ -23,7 +24,7 @@ app.use(
 
 const port = config.port;
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Inventory Management System.");
 });
 
@@ -33,6 +34,7 @@ app.use("/api/user", auth, userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/supplier", auth, supplierRoute);
 app.use("/api/customer", auth, customerRoute);
+app.use("/api/purchase", auth, purchaseRoute);
 
 app.listen(port, () => {
   console.log(`App Listening in port ${port}`);

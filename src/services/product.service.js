@@ -2,8 +2,8 @@ import Product from "../models/Product.js";
 
 const getAllProducts = async () => {
     const products = await Product.find()
-    .populate("categoryId","name")
-    .populate("supplier","name status");
+        .populate("categoryId", "name")
+        .populate("supplier", "name");
     return products;
 };
 
@@ -13,7 +13,8 @@ const getProductById = async (id) => {
 };
 
 const createProduct = async (data) => {
-    return await Product.create(data);
+    const product = await Product.create(data);
+    return product;
 };
 
 const updateProduct = async (id, input) => {
