@@ -46,10 +46,6 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
     profileImageUrl: String,
     roles: {
         type: [String],
@@ -58,6 +54,6 @@ const UserSchema = new mongoose.Schema({
     },
     contactPerson: String,
     customerType: String,
-})
+}, { timestamps: true })
 
 export default mongoose.model("UserSchema", UserSchema);
