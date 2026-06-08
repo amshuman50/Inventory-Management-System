@@ -25,7 +25,7 @@ const createPurchase = async (req, res) => {
         const createdProduct = await productService.createProduct(product);
         // const purchase = await purchaseService.createPurchase({ ...req.body, product: createdProduct._id, supplier: userId });
         const purchase = await purchaseService.createPurchase({ ...req.body, product: createdProduct._id });
-        res.status(201).json(purchase);
+        res.status(201).json({ message: `${createdProduct.name} purchased successfully.` });
     } catch (error) {
         res.status(400).send(error.message);
     }
