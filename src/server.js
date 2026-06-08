@@ -25,7 +25,7 @@ app.use(
 const port = config.port;
 
 app.get("/api", (req, res) => {
-  res.send("Inventory Management System.");
+  res.json({ status: "ok", version: "0.1.0", port: "10000", message: "Welcome to Inventory Management System." })
 });
 
 app.use("/api/product", auth, productRoute);
