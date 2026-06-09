@@ -37,8 +37,8 @@ const updateCustomer = async (req, res) => {
         if (!existingEmailPhone) {
             const customer = await customerService.updateCustomer(id, input);
             res.json(customer);
-        }else{
-            res.status(409).json({message:"Email or Phone Already Exists."});
+        } else {
+            res.status(409).json({ message: "Email or Phone Already Exists." });
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -48,7 +48,7 @@ const updateCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
     try {
         const customer = await customerService.deleteCustomer(req.params.id);
-        res.json(customer);
+        res.json({ message: `${customer.name} deleted successfully.` });
     } catch (error) {
         res.status(400).message(error.message);
     };
