@@ -48,6 +48,9 @@ const updateCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
     try {
         const customer = await customerService.deleteCustomer(req.params.id);
+        if (!customer) {
+            return res.json({ message: "No cush customer found." })
+        }
         res.json({ message: `${customer.name} deleted successfully.` });
     } catch (error) {
         res.status(400).message(error.message);
