@@ -25,4 +25,23 @@ const deleteProduct = async (id) => {
     return await Product.findByIdAndDelete(id);
 };
 
-export default { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct }
+const decreaseStock = async (productId) => {
+    const product = await Product.findOneAndUpdate(
+        {
+            _id: productId,
+            stock: { $gt: 0 }
+        },
+        {
+            $inc: { stock: -1 }
+        },
+        {
+            new: true
+        }
+    );
+    if (!product) {
+        throw new Error("Product not found or out of stock.");
+    }
+    return product;
+};
+
+export default { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct, decreaseStock }
