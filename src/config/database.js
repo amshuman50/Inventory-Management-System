@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import config from "./config.js";
 
-function connectDB() {
+async function connectDB() {
     await mongoose.connect(config.mongodbUrl).then(() => {
         console.log("MongoDB Connected Successfully.")
     }).catch((error) => {
