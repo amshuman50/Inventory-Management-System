@@ -13,7 +13,7 @@ import purchaseRoute from "./routes/purchase.route.js";
 import salesRoute from "./routes/sales.route.js"
 
 const app = express();
-connectDB();
+await connectDB();
 
 app.use(express.json());
 app.use(
