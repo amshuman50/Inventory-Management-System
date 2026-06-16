@@ -18,4 +18,12 @@ const deleteUser = async (id) => {
     const user = await UserSchema.findByIdAndDelete(id);
 };
 
-export default { getAllUsers, getUserById, updateUser, deleteUser }
+const getUserByEmail = async (email) => {
+    return await UserSchema.findOne({ email });
+};
+
+const getUserByPhone = async (phone) => {
+    return await UserSchema.findOne({ phone });
+};
+
+export default { getAllUsers, getUserById, updateUser, deleteUser, getUserByEmail, getUserByPhone }

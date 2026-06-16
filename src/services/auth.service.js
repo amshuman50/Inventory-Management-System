@@ -1,14 +1,24 @@
 import bcrypt from "bcrypt"
 import UserSchema from "../models/User.js"
+import userService from "./user.service.js";
 
 const register = async (data) => {
-    const user = await UserSchema.findOne({ $or: [{ email: data?.email }, { phone: data?.phone }] });
-    if (user) {
+    const existingEmail = await userService.getUserByEmail(data.email);
+    if (existingEmail) {
         throw {
             status: 409,
-            message: "User already exists."
-        }
+            message: "Email already exists."
+        };
     }
+
+    const existingPhone = await userService.getUserByPhone(data.phone);
+    if (existingPhone) {
+        throw {
+            status: 409,
+            message: "Phone number already exists."
+        };
+    }
+
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(data.password, salt);
     const createdUser = await UserSchema.create({ ...data, password: hashedPassword });
