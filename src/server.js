@@ -11,6 +11,7 @@ import supplierRoute from "./routes/supplier.route.js"
 import customerRoute from "./routes/customer.route.js";
 import purchaseRoute from "./routes/purchase.route.js";
 import salesRoute from "./routes/sales.route.js"
+import registrationRequestsRoute from "./routes/registrationRequests.route.js"
 
 const app = express();
 await connectDB();
@@ -37,6 +38,7 @@ app.use("/api/supplier", auth, supplierRoute);
 app.use("/api/customer", auth, customerRoute);
 app.use("/api/purchase", auth, purchaseRoute);
 app.use("/api/sales", auth, salesRoute);
+app.use("/api/registrationRequests", registrationRequestsRoute);
 
 app.listen(port, () => {
   console.log(`App Listening in port ${port}`);
