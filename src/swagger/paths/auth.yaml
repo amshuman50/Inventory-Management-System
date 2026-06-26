@@ -1,4 +1,4 @@
-/api/auth/login:
+/auth/login:
   post:
     tags:
       - Authentication
@@ -27,7 +27,7 @@
       401:
         description: Invalid Credentials
 
-/api/registrationRequests:
+/registrationRequests:
   post:
     tags:
       - Authentication
