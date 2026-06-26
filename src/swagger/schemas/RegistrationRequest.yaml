@@ -3,38 +3,52 @@ components:
     RegistrationRequest:
       type: object
       required:
-        - fullName
+        - name
+        - phone
+        - address
         - email
         - password
+        - roles
       properties:
-        _id:
+        name:
           type: string
-          example: 6851f78d1b4e6f1234567890
-
-        fullName:
-          type: string
-          example: John Doe
-
-        email:
-          type: string
-          example: john@example.com
-
-        password:
-          type: string
-          example: Password@123
+          example: Admin
 
         phone:
           type: string
-          example: 9800000000
+          example: "9866545877"
 
-        companyName:
-          type: string
-          example: ABC Traders
+        address:
+          type: object
+          required:
+            - country
+            - province
+          properties:
+            country:
+              type: string
+              example: Nepal
 
-        status:
+            province:
+              type: string
+              example: Bagmati
+
+        email:
           type: string
-          enum:
-            - Pending
-            - Approved
-            - Rejected
-          example: Pending
+          format: email
+          example: admin21@gmail.com
+
+        password:
+          type: string
+          format: password
+          example: Password@123
+
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+              - ADMIN
+              - PRODUCT_MANAGER
+              - SALES_MANAGER
+          example:
+            - ADMIN
