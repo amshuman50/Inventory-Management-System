@@ -1,0 +1,63 @@
+/api/auth/login:
+  post:
+    tags:
+      - Authentication
+
+    summary: Login User
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            type: object
+
+            properties:
+              email:
+                type: string
+
+              password:
+                type: string
+
+    responses:
+      200:
+        description: Login Successful
+
+      401:
+        description: Invalid Credentials
+
+/api/registrationRequests:
+  post:
+    tags:
+      - Authentication
+
+    summary: Register a new user
+
+    description: Creates a registration request that requires approval before the user can log in.
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/RegistrationRequest"
+
+    responses:
+      201:
+        description: Registration request submitted successfully
+
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationRequest"
+
+      400:
+        description: Validation error
+
+      409:
+        description: Email already exists
+
+      500:
+        description: Internal server error

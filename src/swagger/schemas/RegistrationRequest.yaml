@@ -1,0 +1,40 @@
+components:
+  schemas:
+    RegistrationRequest:
+      type: object
+      required:
+        - fullName
+        - email
+        - password
+      properties:
+        _id:
+          type: string
+          example: 6851f78d1b4e6f1234567890
+
+        fullName:
+          type: string
+          example: John Doe
+
+        email:
+          type: string
+          example: john@example.com
+
+        password:
+          type: string
+          example: Password@123
+
+        phone:
+          type: string
+          example: 9800000000
+
+        companyName:
+          type: string
+          example: ABC Traders
+
+        status:
+          type: string
+          enum:
+            - Pending
+            - Approved
+            - Rejected
+          example: Pending

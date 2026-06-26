@@ -1,0 +1,20 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6851f78d1b4e6f1234567890
+
+        fullName:
+          type: string
+          example: Amshu Man Maharjan
+
+        email:
+          type: string
+          example: amshuman@email.com
+
+        role:
+          type: string
+          example: Admin

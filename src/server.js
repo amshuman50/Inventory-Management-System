@@ -12,6 +12,8 @@ import customerRoute from "./routes/customer.route.js";
 import purchaseRoute from "./routes/purchase.route.js";
 import salesRoute from "./routes/sales.route.js"
 import registrationRequestsRoute from "./routes/registrationRequests.route.js"
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger/swagger.js";
 
 const app = express();
 await connectDB();
@@ -22,6 +24,12 @@ app.use(
     origin: true,
     credentials: true,
   })
+);
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec)
 );
 
 const port = config.port;
