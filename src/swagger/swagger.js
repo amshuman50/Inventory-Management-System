@@ -2,6 +2,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 import config from "../config/config.js";
 
 const port = config.port;
+const liveUrl = config.liveUrl;
 
 const options = {
     definition: {
@@ -13,8 +14,11 @@ const options = {
         },
         servers: [
             {
-                url: `http://localhost:${port}`,
+                url: `${liveUrl}`
             },
+            {
+                url: `http://localhost:${port}`
+            }
         ],
         components: {
             securitySchemes: {
