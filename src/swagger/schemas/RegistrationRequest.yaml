@@ -2,27 +2,34 @@ components:
   schemas:
     RegistrationRequest:
       type: object
+
       required:
         - name
         - phone
         - address
         - email
         - password
-        - roles
+
       properties:
+        _id:
+          type: string
+          example: 688a65d92dc1d7c53bc12345
+
         name:
           type: string
-          example: Admin
+          minLength: 3
+          maxLength: 50
+          example: John Doe
 
         phone:
           type: string
-          example: "9866545877"
+          minLength: 6
+          maxLength: 13
+          example: "9801234567"
 
         address:
           type: object
-          required:
-            - country
-            - province
+
           properties:
             country:
               type: string
@@ -35,20 +42,60 @@ components:
         email:
           type: string
           format: email
-          example: admin21@gmail.com
+          example: john@example.com
 
         password:
           type: string
-          format: password
-          example: Password@123
+          minLength: 6
+          example: password123
+
+        isActive:
+          type: boolean
+          default: true
+          example: true
+
+        profileImageUrl:
+          type: string
+          example: https://example.com/profile.jpg
 
         roles:
           type: array
+
           items:
             type: string
             enum:
+              - SUPER_ADMIN
               - ADMIN
-              - PRODUCT_MANAGER
+              - PURCHASE_MANAGER
               - SALES_MANAGER
+              - CUSTOMER
+
           example:
-            - ADMIN
+            - CUSTOMER
+
+        contactPerson:
+          type: string
+          example: Ram Sharma
+
+        customerType:
+          type: string
+          example: Wholesale
+
+        status:
+          type: string
+
+          enum:
+            - PENDING
+            - APPROVED
+            - REJECTED
+            - UNDERREVIEW
+
+          example: PENDING
+
+        createdAt:
+          type: string
+          format: date-time
+
+        updatedAt:
+          type: string
+          format: date-time

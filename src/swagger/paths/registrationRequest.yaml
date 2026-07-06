@@ -1,0 +1,194 @@
+/registrationRequests:
+  get:
+    tags:
+      - Registration Requests
+
+    summary: Get all registration requests
+
+    responses:
+      200:
+        description: Registration requests retrieved successfully
+
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/RegistrationRequest"
+
+  post:
+    tags:
+      - Registration Requests
+
+    summary: Create a registration request
+
+    description: Creates a registration request that requires approval before the user can log in.
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/RegistrationRequest"
+
+    responses:
+      201:
+        description: Registration request submitted successfully
+
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationRequest"
+
+      409:
+        description: Email or Phone number already exists
+
+      500:
+        description: Internal server error
+
+/registrationRequests/{id}:
+  get:
+    tags:
+      - Registration Requests
+
+    summary: Get registration request by ID
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    responses:
+      200:
+        description: Registration request found
+
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationRequest"
+
+      404:
+        description: Registration request not found
+
+  put:
+    tags:
+      - Registration Requests
+
+    summary: Update registration request
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/RegistrationRequest"
+
+    responses:
+      200:
+        description: Registration request updated successfully
+
+      404:
+        description: Registration request not found
+
+  delete:
+    tags:
+      - Registration Requests
+
+    summary: Delete registration request
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    responses:
+      200:
+        description: Registration request deleted successfully
+
+      404:
+        description: Registration request not found
+
+/registrationRequests/{id}/status:
+  patch:
+    tags:
+      - Registration Requests
+
+    summary: Update registration request status
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            type: object
+
+            required:
+              - status
+
+            properties:
+              status:
+                type: string
+                enum:
+                  - PENDING
+                  - APPROVED
+                  - REJECTED
+                  - UNDERREVIEW
+
+    responses:
+      200:
+        description: Status updated successfully
+
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationRequest"
+
+      404:
+        description: Registration request not found
+
+/registrationRequests/{id}/approve:
+  post:
+    tags:
+      - Registration Requests
+
+    summary: Approve a registration request
+
+    description: Approves a registration request and creates a new user.
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+
+    responses:
+      200:
+        description: Registration request approved successfully
+
+      404:
+        description: Registration request not found
+
+      409:
+        description: User already exists
