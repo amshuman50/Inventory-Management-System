@@ -121,7 +121,7 @@
       404:
         description: Registration request not found
 
-/registrationRequests/{id}/status:
+/registrationRequests/{id}:
   patch:
     tags:
       - Registration Requests
